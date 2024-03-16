@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Udemy-Master-Microservices-with-Spring-Boot-and-Spring-Cloud.iml" filepath="$PROJECT_DIR$/.idea/Udemy-Master-Microservices-with-Spring-Boot-and-Spring-Cloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/restful-webservices__/restful-webservices/restful-webservices.iml" filepath="$PROJECT_DIR$/restful-webservices__/restful-webservices/restful-webservices.iml" />
+    </modules>
+  </component>
+</project>
