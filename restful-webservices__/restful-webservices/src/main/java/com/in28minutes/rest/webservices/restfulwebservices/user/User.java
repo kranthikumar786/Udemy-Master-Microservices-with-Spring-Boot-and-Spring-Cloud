@@ -1,10 +1,12 @@
 package com.in28minutes.rest.webservices.restfulwebservices.user;
 
+import jakarta.validation.constraints.Past;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.time.LocalDate;
 
+import  jakarta.validation.constraints.Size;
 public class User {
 	private static final Logger LOGGER = LogManager.getLogger(User.class);
 
@@ -12,10 +14,12 @@ public class User {
 		LOGGER.info("Initializing User class");
 	}
 
-	private Integer id;
-	private String name;
-	private LocalDate birthDate;
 
+	private Integer id;
+	@Size(min = 2 , message = "Name should have atleast 2 characters")
+	private String name;
+	@Past(message = "Birth date should be in the past")
+	private LocalDate birthDate;
 	public User(Integer id, String name, LocalDate birthDate) {
 		this.id = id;
 		this.name = name;

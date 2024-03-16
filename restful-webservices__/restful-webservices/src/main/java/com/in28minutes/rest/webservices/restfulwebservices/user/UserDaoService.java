@@ -1,12 +1,12 @@
 package com.in28minutes.rest.webservices.restfulwebservices.user;
-import java.util.List;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.function.Predicate;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
 @Component
 public class UserDaoService {
   // JPA/Hibernate > DataBase

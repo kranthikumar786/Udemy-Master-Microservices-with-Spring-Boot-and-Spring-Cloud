@@ -1,6 +1,8 @@
 package com.in28minutes.rest.webservices.restfulwebservices.user;
 import java.net.URI;
 import java.util.List;
+
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +15,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestParam;
+import jakarta.validation.Valid;
 @RestController
 public class UserResource {
 
@@ -45,7 +48,7 @@ public class UserResource {
 		service.deleteById(id);
 	}	
 	@PostMapping("/users") 
-	public ResponseEntity<User> createUser(@RequestBody User user){
+	public ResponseEntity<User> createUser(@Valid @RequestBody User user){
 		LOGGER.info(" pOST Mapping" + user);
 		User savedUser = service.save(user);
 		LOGGER.info("User created and coming back to User Resource.java End point");
