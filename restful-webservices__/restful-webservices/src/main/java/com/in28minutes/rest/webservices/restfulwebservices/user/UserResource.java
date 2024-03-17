@@ -1,7 +1,9 @@
 package com.in28minutes.rest.webservices.restfulwebservices.user;
 import java.net.URI;
 import java.util.List;
-
+import  static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
@@ -26,20 +28,25 @@ public class UserResource {
 		this.service = service;
 	}
 	@GetMapping("/users")
-	public List<User> retrieveAllUsers(@RequestParam(name = "sortBy", required = false) String sortBy) {
-		LOGGER.info("Received request to retrieve all users. Sort by: {}", sortBy);
+	public List<User> retrieveAllUsers() {
+		LOGGER.info("Received request to retrieve all users. Sort by: {}");
 		return service.findAll();
 	}
-	
+
+
+
 	@GetMapping("/users/{id}")
-	public User retriveAllUser(@PathVariable int id){
+	public EntityModel<User> retriveUser(@PathVariable int id){
 	  LOGGER.info("Request reached to get user detials from UserResource.java  for USER ID : " + id);
 	   User user = service.findOne(id);
 	   
 	    if(user==null) 
 	     	throw new UserNotFoundException("id:" +id);
-	LOGGER.info("User returing for user id: " + id);
-	    return user;	
+	 EntityModel<User> entityModel = EntityModel.of(user);
+		WebMvcLinkBuilder link = linkTo(methodOn(this.getClass()).retrieveAllUsers()) ;
+		entityModel.add(link.withRel("all-users"));
+		LOGGER.info("User returing for user id: " + id);
+	    return entityModel;
 	   //return service.findAll();
 	}
 	

@@ -1,5 +1,9 @@
 package com.in28minutes.rest.webservices.restfulwebservices.user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Past;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,6 +11,9 @@ import org.apache.logging.log4j.Logger;
 import java.time.LocalDate;
 
 import  jakarta.validation.constraints.Size;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
+@Entity(name = "user_deatils")
 public class User {
 	private static final Logger LOGGER = LogManager.getLogger(User.class);
 
@@ -14,11 +21,14 @@ public class User {
 		LOGGER.info("Initializing User class");
 	}
 
-
+     @Id
+	 @GeneratedValue
 	private Integer id;
 	@Size(min = 2 , message = "Name should have atleast 2 characters")
+	@JsonProperty("User_Name")
 	private String name;
 	@Past(message = "Birth date should be in the past")
+	@JsonProperty("birth_date")
 	private LocalDate birthDate;
 	public User(Integer id, String name, LocalDate birthDate) {
 		this.id = id;
